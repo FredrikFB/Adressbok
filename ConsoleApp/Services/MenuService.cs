@@ -3,9 +3,9 @@ using Newtonsoft.Json;
 
 namespace ConsoleApp.Services;
 
-internal class MenuService
+public class MenuService
 {
-    private List<Contact> contacts = new List<Contact>();
+    public List<Contact> contacts = new List<Contact>();
     private FileService file = new FileService();
 
     public void Menu()
@@ -58,11 +58,16 @@ internal class MenuService
         contact.Email = Console.ReadLine() ?? "";
         Console.Write("Skriv in Telefonnummer: ");
         contact.PhoneNumber = Console.ReadLine() ?? "";
-        Console.Write("Skriv in Adress: ");
+        Console.Write("Skriv in Gata: ");
         contact.Adress = Console.ReadLine() ?? "";
+        Console.Write("Skriv in Postnummer: ");
+        contact.Postalcode = Console.ReadLine() ?? "";
+        Console.Write("Skriv in Stad: ");
+        contact.City = Console.ReadLine() ?? "";
 
         contacts.Add(contact);
         file.Save( JsonConvert.SerializeObject(contacts));
+        
 
         Console.Clear() ;
         Console.WriteLine("Kontakt skapad.");
@@ -74,7 +79,7 @@ internal class MenuService
         Console.WriteLine("Lista av kontakter");
         foreach (Contact contact in contacts) 
         {
-            Console.WriteLine($"Förnamn: {contact.FirstName} \nEfternamn: {contact.LastName} \nE-post: {contact.Email} \nTelefonnummer: {contact.PhoneNumber} \nAdress: {contact.Adress} \n");
+            Console.WriteLine($"Förnamn: {contact.FirstName} \nEfternamn: {contact.LastName} \nE-post: {contact.Email} \nTelefonnummer: {contact.PhoneNumber} \nAdress: {contact.DisplayAdress} \n");
         }
         Console.ReadKey() ;
     }
@@ -86,8 +91,8 @@ internal class MenuService
 
         if (firstName != null)
         {
-            IContacts result = contacts.FirstOrDefault(x => x.FirstName.ToLower() == firstName.ToLower())!;
-            Console.WriteLine($"Förnamn: {result.FirstName} \n Efternamn: {result.LastName}");
+            Contact result = contacts.FirstOrDefault(x => x.FirstName.ToLower() == firstName.ToLower())!;
+            Console.WriteLine($"Förnamn: {result.FirstName} \nEfternamn: {result.LastName} \nE-post: {result.Email} \nTelefonnummer: {result.PhoneNumber} \nAdress: {result.DisplayAdress} \n");
             Console.ReadKey();
         }
     }
@@ -106,11 +111,14 @@ internal class MenuService
         }else
         {
             Console.WriteLine("Vill du verkligen ta bort denna kontakten? (Y/N)");
+            Console.WriteLine($"Förnamn: {result.FirstName} \nEfternamn: {result.LastName} \nE-post: {result.Email} \nTelefonnummer: {result.PhoneNumber} \nAdress: {result.DisplayAdress} \n");
             string res = Console.ReadLine() ??"";
             
             if(res.ToLower() == "y")
             {
-                contacts.Remove(result);
+                //contacts.Remove(result);
+                contacts.Remove((Contact)result);
+                file.Save(JsonConvert.SerializeObject(contacts));
                 Console.Clear();
                 Console.WriteLine("kontakt borttagen");
                 Console.ReadKey();

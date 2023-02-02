@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp.Services
 {
-    internal class FileService
+    public class FileService
     {
-        public string FilePath { get; set; } = $@"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\content1.json";
+        public string FilePath { get; set; } = $@"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\content.json";
 
         public void Save( string content)
         {

@@ -5,11 +5,13 @@
     string Email { get; set; }
     string PhoneNumber { get; set; }
     string Adress { get; set; }
+    string City { get; set; }
+    string Postalcode { get; set; }
 }
 
 namespace ConsoleApp.Models
 {
-    internal class Contact : IContacts
+    public class Contact : IContacts
     {
         public Guid Id = Guid.NewGuid();
         public string FirstName { get; set; } = null!;
@@ -17,5 +19,8 @@ namespace ConsoleApp.Models
         public string Email { get; set; } = null!;
         public string PhoneNumber { get; set; } = null!;
         public string Adress { get; set; } = null!;
+        public string City { get; set; } = null!;
+        public string Postalcode { get; set; } = null!;
+        public string DisplayAdress => $"{Adress}, {Postalcode} {City}";
     }
 }

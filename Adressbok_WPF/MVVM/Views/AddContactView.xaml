@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="Adressbok_WPF.MVVM.Views.AddContactView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Adressbok_WPF.MVVM.Views"
+             xmlns:viewmodels="clr-namespace:Adressbok_WPF.MVVM.ViewModels"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance Type=viewmodels:AddContactViewModel}"
+             d:DesignHeight="450" d:DesignWidth="800">
+    
+    
+    <Grid Margin="20" Background="White">
+        <TextBlock Text="{Binding Title}" FontSize="20" Margin="30 0 0 0"/>
+        <StackPanel Margin="30" >
+            <TextBlock Text="Förnamn"/>
+            <TextBox Text="{Binding Contact.FirstName}" Padding="3" Margin="0 0 0 10"/>
+
+            <TextBlock Text="Efternamn"/>
+            <TextBox Text="{Binding Contact.LastName}" Padding="3" Margin="0 0 0 10"/>
+
+            <TextBlock Text="E-postadress"/>
+            <TextBox Text="{Binding Contact.Email}" Padding="3" Margin="0 0 0 10"/>
+
+            <TextBlock Text="Telefonnummer"/>
+            <TextBox Text="{Binding Contact.PhoneNumber}" Padding="3" Margin="0 0 0 10"/>
+
+            <TextBlock Text="Adress"/>
+            <TextBox Text="{Binding Contact.Adress}" Padding="3" Margin="0 0 0 10"/>
+
+            <TextBlock Text="Stad"/>
+            <TextBox Text="{Binding Contact.City}" Padding="3" Margin="0 0 0 10"/>
+
+            <TextBlock Text="Postkod"/>
+            <TextBox Text="{Binding Contact.Postalcode}" Padding="3" Margin="0 0 0 10"/>
+
+            <Button Command="{Binding AddCommand}" Content="Add Contact" Padding="8" Background="#FF7373" />
+        </StackPanel>
+    </Grid>
+</UserControl>
