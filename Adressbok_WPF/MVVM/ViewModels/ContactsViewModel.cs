@@ -27,12 +27,7 @@ namespace Adressbok_WPF.MVVM.ViewModels
         [RelayCommand]
         public void Remove() 
         {
-            var res = MessageBox.Show("Vill du verkligen ta bort denna kontakten?","Confirmation", MessageBoxButton.YesNo);
-            if (res == MessageBoxResult.Yes)
-            {
-                ContactServices.Remove(SelectContact);
-            }
-            else MessageBox.Show("Bortagning avbruten");
+            ContactServices.Remove(SelectContact);
         }
 
         
