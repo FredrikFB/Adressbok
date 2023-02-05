@@ -22,5 +22,6 @@ namespace ConsoleApp.Models
         public string City { get; set; } = null!;
         public string Postalcode { get; set; } = null!;
         public string DisplayAdress => $"{Adress}, {Postalcode} {City}";
+        public string DisplayName => $"{FirstName}, {LastName}";
     }
 }

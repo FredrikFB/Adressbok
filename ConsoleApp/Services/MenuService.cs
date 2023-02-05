@@ -79,7 +79,7 @@ public class MenuService
         Console.WriteLine("Lista av kontakter");
         foreach (Contact contact in contacts) 
         {
-            Console.WriteLine($"Förnamn: {contact.FirstName} \nEfternamn: {contact.LastName} \nE-post: {contact.Email} \nTelefonnummer: {contact.PhoneNumber} \nAdress: {contact.DisplayAdress} \n");
+            Console.WriteLine($"Namn: {contact.DisplayName}  \nE-post: {contact.Email} \n");
         }
         Console.ReadKey() ;
     }

@@ -12,17 +12,25 @@ namespace Adressbok_WPF.Services
     public static class ContactServices
     {
         private static ObservableCollection<ContactModel> contacts;
-        private static FileService fileService = new FileService($@"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\content.json");
+        private static string filePath = $@"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\content.json";
+        private static FileService fileService = new FileService(filePath);
 
         static ContactServices()
         {
-            try
+            
+            if(File.Exists((filePath)))
             {
-                //using var sr = new StreamReader($@"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\content.json");
+                contacts = JsonConvert.DeserializeObject<ObservableCollection<ContactModel>>(fileService.Read())!;
+
+            }else contacts = new ObservableCollection<ContactModel>(); 
+            
+            /*try
+            {
+                //using var sr = new StreamReader($@"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\content1.json");
                 //contacts = JsonConvert.DeserializeObject<ObservableCollection<ContactModel>>(sr.ReadToEnd())!;
                 contacts = JsonConvert.DeserializeObject<ObservableCollection<ContactModel>>(fileService.Read())!;
             }
-            catch { contacts = new ObservableCollection<ContactModel>(); }
+            catch { contacts = new ObservableCollection<ContactModel>(); }*/
         }
 
         public static void Add(ContactModel model) 
